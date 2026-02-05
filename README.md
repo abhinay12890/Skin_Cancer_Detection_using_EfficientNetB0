@@ -2,16 +2,7 @@
 
 ## Project Overview
 
-Built a clinically-aware deep learning pipeline to detect cancerous vs non-cancerous skin lesions using EfficientNetB0 with transfer learning and deployed it for real-time inference.
-
-Designed to reflect real-world medical ML constraints rather than benchmark-only performance, the system emphasizes:
-
-- Patient-level data leakage prevention
-- Diagnostic reliability through threshold tuning
-- Model interpretability using Grad-CAM
-- Robust generalization via staged fine-tuning
-
-This project demonstrates end-to-end ownership; from dataset engineering to deployment.
+Built a clinically-aware deep learning system for early skin cancer detection using EfficientNetB0, designed to minimize diagnostic risk through patient-level leakage prevention, threshold optimization, and model interpretability through 2-stage fine tuning.
 
 ---
 ## Tech Stack
@@ -24,7 +15,7 @@ This project demonstrates end-to-end ownership; from dataset engineering to depl
 ---
 
 ## Live Deployment
-**->** **Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)\
+**Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)\
 
 The trained model was deployed using streamlit on Hugging Face Spaces, enabling real-time predictions through an interactive web application along with the saved keras model.
 
@@ -37,7 +28,7 @@ The trained model was deployed using streamlit on Hugging Face Spaces, enabling 
 
 Download `skin_cancer_detector.keras` model file from the huggingface space to the project directory
 
-`git clone repository_url`\
+`git clone https://github.com/abhinay12890/Skin_Cancer_Detection_using_EfficientNetB0`\
 `cd repository_name`\
 `streamlit run app.py`
 
@@ -46,7 +37,7 @@ Download `skin_cancer_detector.keras` model file from the huggingface space to t
 ```
 ├── Skin_Disease.ipynb              # Training Notebook
 ├── app.py                          # Streamlit UI
-├── requirements.txt                # Requirments for this project
+├── requirements.txt                # Requirements for this project
 ├── README.md
 ```
 ---
@@ -171,7 +162,7 @@ Instead of using the default 0.5 threshold, tuning was performed on test probabi
 * Built a gradient model to generate heatmaps.
 * Superimposed activation maps onto original images.
 
-The model consistently focused on lesion regions rather than background artifacts, improving prediction transparency a critical requirement for medical AI systems.
+The model consistently focused on lesion regions rather than background artifacts, helping clinicians visually verify that predictions are based on medically relevant regions rather than background artifacts.
 
 ---
 ## Key Highlights

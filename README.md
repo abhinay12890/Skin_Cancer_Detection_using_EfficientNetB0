@@ -2,22 +2,44 @@
 
 ## Project Overview
 
-This project focuses on **binary classification of dermoscopic images** to detect **cancerous vs non-cancerous skin lesions** using EfficientNetB0 with transfer learning.
+Built a clinically-aware deep learning pipeline to detect cancerous vs non-cancerous skin lesions using EfficientNetB0 with transfer learning and deployed it for real-time inference.
 
-The pipeline emphasizes **clinical reliability**, **data leakage prevention**, and **model interpretability** through Grad-CAM visualizations. A two-stage training strategy with threshold tuning was implemented to prioritize diagnostic performance.
+Designed to reflect real-world medical ML constraints rather than benchmark-only performance, the system emphasizes:
 
-## Deployment
+- Patient-level data leakage prevention
+- Diagnostic reliability through threshold tuning
+- Model interpretability using Grad-CAM
+- Robust generalization via staged fine-tuning
+
+This project demonstrates end-to-end ownership; from dataset engineering to deployment.
+
+---
+## Tech Stack
+* Deep Learning: TensorFlow / Keras, EfficientNetB0
+* ML Tools: Scikit-learn, Pandas, NumPy
+* Visualization: Matplotlib, Seaborn
+* Deployment: Streamlit, Hugging Face Spaces
+* Optimization: Mixed Precision Training
+* Explainability: Grad-CAM
+---
+
+## Live Deployment
+**->** **Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)\
+
 The trained model was deployed using streamlit on Hugging Face Spaces, enabling real-time predictions through an interactive web application along with the saved keras model.
 
-**->** **Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)\
 **Features:**
-- **Local File Upload :** Upload images from local device and get prediction
-- **URL Based :** Copy the image address and paste in the field for predictions.
+- **Local File Upload :** Upload images from local device for instant predictions
+- **URL-Based Inference :** Provide image address for classification
+- **Real-time results powered by saved `.keras` model
 
-or
-- clone the repository using `git clone repository_url`
-- copy `skin_cancer_detector.keras` model file from the huggingface space to the project directory
-- run `streamlit app.py`
+**Run Locally**
+
+Download `skin_cancer_detector.keras` model file from the huggingface space to the project directory
+
+`git clone repository_url`\
+`cd repository_name`\
+`streamlit run app.py`
 
 ---
 ## Project Structure
@@ -37,7 +59,6 @@ or
 ### Dataset Strategy
 
 * Converted multi-class labels into binary:
-
   * **Cancerous → 1**
   * **Non-cancerous → 0**
 * Used **StratifiedGroupKFold** grouped by `lesion_id` to prevent patient-level data leakage.
@@ -61,7 +82,6 @@ or
 ### Image Pipeline
 
 * Used **ImageDataGenerator**
-
   * Applied augmentation **only on training data** *(rotation,zoom,flips)*
   * Integrated EfficientNet preprocessing
 * Enabled **Mixed Precision Training** for faster GPU throughput.
@@ -69,11 +89,9 @@ or
 
 **Input Resolution:** 224×224
 **Batch Size:** 16
-
 ---
 
 ## Model Architecture
-
 * **Base Model:** EfficientNetB0 (ImageNet pre-trained)
 * Initially frozen for feature extraction.
 
@@ -156,7 +174,6 @@ Instead of using the default 0.5 threshold, tuning was performed on test probabi
 The model consistently focused on lesion regions rather than background artifacts, improving prediction transparency a critical requirement for medical AI systems.
 
 ---
-
 ## Key Highlights
 
 * Prevented patient-level data leakage
@@ -165,16 +182,6 @@ The model consistently focused on lesion regions rather than background artifact
 * Applied staged fine-tuning
 * Performed threshold optimization
 * Added explainability with Grad-CAM
-
----
-
-## Tech Stack
-
-* TensorFlow / Keras
-* EfficientNetB0
-* Scikit-learn
-* Pandas / NumPy
-* Matplotlib / Seaborn
 
 ---
 

@@ -17,6 +17,8 @@ Built a clinically-aware deep learning system for early skin cancer detection us
 ## Live Deployment
 **Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)\
 
+![UI](ui.png)
+
 The trained model was deployed using streamlit on Hugging Face Spaces, enabling real-time predictions through an interactive web application along with the saved keras model.
 
 **Features:**
@@ -163,6 +165,7 @@ Instead of using the default 0.5 threshold, tuning was performed on test probabi
 * Superimposed activation maps onto original images.
 
 The model consistently focused on lesion regions rather than background artifacts, helping clinicians visually verify that predictions are based on medically relevant regions rather than background artifacts.
+![result](result.png)
 
 ---
 ## Key Highlights

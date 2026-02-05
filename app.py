@@ -2,6 +2,9 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 import cv2
+import requests
+from PIL import Image
+from io import BytesIO
 
 
 # Prevent model reload on every interaction
@@ -91,38 +94,42 @@ Upload a dermoscopic image to receive an AI-assisted prediction.
 )
 
 
-uploaded_file = st.file_uploader(
-    "Upload a dermoscopic image",
-    type=["jpg", "png", "jpeg"]
-)
+uploaded_file = st.file_uploader("Upload a dermoscopic image", type=["jpg", "png", "jpeg"])
 
-if uploaded_file:
+image_url = st.text_input( "OR paste an image URL")
 
-    # Convert buffer → numpy
-    file_bytes = np.asarray(bytearray(uploaded_file.read()),
-                            dtype=np.uint8)
+image = None
+
+if uploaded_file is not None:
+
+    file_bytes = np.asarray(
+        bytearray(uploaded_file.read()),
+        dtype=np.uint8)
 
     image = cv2.imdecode(file_bytes, 1)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+elif image_url:
+
+    try:
+        response = requests.get(image_url, timeout=5)
+        img = Image.open(BytesIO(response.content)).convert("RGB")
+        image = np.array(img)
+
+    except:
+        st.error("Could not load image from URL.")
+
 
     # -------- Preprocess -------- #
 
-    resized = cv2.resize(image, (224,224))
-    img_tensor = np.expand_dims(resized, axis=0)
-    img_tensor = tf.cast(img_tensor, tf.float32)
+resized = cv2.resize(image, (224,224))
+img_tensor = np.expand_dims(resized, axis=0)
+img_tensor = tf.cast(img_tensor, tf.float32)
 
-    with st.spinner("Analyzing lesion..."):
-
-        pred = model.predict(
-            tf.keras.applications.efficientnet.preprocess_input(img_tensor),
-            verbose=0
-        )[0][0]
-
-        heatmap = get_gradcam_heatmap(model, img_tensor)
-
-        overlay = overlay_heatmap(image, heatmap)
+with st.spinner("Analyzing lesion..."):
+    pred = model.predict(tf.keras.applications.efficientnet.preprocess_input(img_tensor),verbose=0)[0][0]
+    heatmap = get_gradcam_heatmap(model, img_tensor)
+    overlay = overlay_heatmap(image, heatmap)
 
     # -------- Results -------- #
     st.divider()

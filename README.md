@@ -6,6 +6,19 @@ This project focuses on **binary classification of dermoscopic images** to detec
 
 The pipeline emphasizes **clinical reliability**, **data leakage prevention**, and **model interpretability** through Grad-CAM visualizations. A two-stage training strategy with threshold tuning was implemented to prioritize diagnostic performance.
 
+## Deployment
+The trained model was deployed using streamlit on Hugging Face Spaces, enabling real-time predictinos through an interactive web application along with the saved keras model.
+
+**->** **Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)
+
+---
+## Project Structure
+```
+├── Skin_Disease.ipynb              # Training Notebook
+├── app.py                          # Streamlit UI
+├── requirements.txt                # Requirments for this project
+├── README.md
+```
 ---
 
 ## Dataset

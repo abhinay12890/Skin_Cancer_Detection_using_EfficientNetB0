@@ -2,7 +2,8 @@
 
 ## Overview
 
-Clinically-aware deep learning system designed for reliable skin cancer prediction with leakage prevention, threshold tuning, and Grad-CAM interpretability.
+Clinically-aware deep learning system designed for reliable skin cancer prediction with leakage prevention, threshold tuning, and Grad-CAM interpretability achieving PR-AUC: 0.717, 
+ROC-AUC: 0.819
 
 ---
 ## Live Deployment
@@ -86,12 +87,6 @@ Total Images: 10,015
 *(Grouped splitting ensures images from the same lesion never appear across multiple sets.)*
 
 ---
-
-## Data Preprocessing
-
-* Performed EDA on HAM10000 metadata.
-* Visualized sample images across categories.
-* Attached image paths to the dataframe for generator-based loading.
 
 ### Image Pipeline
 

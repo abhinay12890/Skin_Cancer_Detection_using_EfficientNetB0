@@ -16,7 +16,7 @@ The trained model was deployed using streamlit on Hugging Face Spaces, enabling 
 **Features:**
 - **Local File Upload :** Upload images from local device for instant predictions
 - **URL-Based Inference :** Provide image address for classification
-- **Real-time results powered by saved `.keras` model
+- **Real-time results** powered by saved `.keras` model
 
 ---
 ## Key Highlights

@@ -1,6 +1,6 @@
 # 🔬 Skin Cancer Detection using EfficientNetB0 (Transfer Learning)
 
-## Project Overview
+## Overview
 
 Clinically-aware deep learning system designed for reliable skin cancer prediction with leakage prevention, threshold tuning, and Grad-CAM interpretability.
 
@@ -16,6 +16,17 @@ The trained model was deployed using streamlit on Hugging Face Spaces, enabling 
 - **Local File Upload :** Upload images from local device for instant predictions
 - **URL-Based Inference :** Provide image address for classification
 - **Real-time results powered by saved `.keras` model
+
+---
+## Key Highlights
+
+* Prevented patient-level data leakage
+* Used PR-AUC as the primary metric for imbalanced data
+* Implemented mixed precision training
+* Leveraged transfer learning from ImageNet
+* Applied staged fine-tuning
+* Performed threshold optimization
+* Added explainability with Grad-CAM
 
 ---
 ## Results
@@ -43,16 +54,6 @@ The trained model was deployed using streamlit on Hugging Face Spaces, enabling 
 [[543, 135],
  [124, 226]]
 ```
----
-## Key Highlights
-
-* Prevented patient-level data leakage
-* Used PR-AUC as the primary metric for imbalanced data
-* Implemented mixed precision training
-* Applied staged fine-tuning
-* Performed threshold optimization
-* Added explainability with Grad-CAM
-
 ---
 ## Project Structure
 ```
@@ -174,7 +175,7 @@ The model consistently focused on lesion regions rather than background artifact
 Download `skin_cancer_detector.keras` model file from the huggingface space to the project directory
 
 `git clone https://github.com/abhinay12890/Skin_Cancer_Detection_using_EfficientNetB0`\
-`cd repository_name`\
+`cd Skin_Cancer_Detection_using_EfficientNetB0`\
 `streamlit run app.py`
 
 ---

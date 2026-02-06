@@ -2,18 +2,9 @@
 
 ## Project Overview
 
-Built a clinically-aware deep learning system for early skin cancer detection using EfficientNetB0, designed to minimize diagnostic risk through patient-level leakage prevention, threshold optimization, and model interpretability through 2-stage fine tuning.
+Clinically-aware deep learning system designed for reliable skin cancer prediction with leakage prevention, threshold tuning, and Grad-CAM interpretability.
 
 ---
-## Tech Stack
-* Deep Learning: TensorFlow / Keras, EfficientNetB0
-* ML Tools: Scikit-learn, Pandas, NumPy
-* Visualization: Matplotlib, Seaborn
-* Deployment: Streamlit, Hugging Face Spaces
-* Optimization: Mixed Precision Training
-* Explainability: Grad-CAM
----
-
 ## Live Deployment
 **Live Demo:** [https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection](https://huggingface.co/spaces/abhinay1289/AI-Skin-Cancer-Detection)\
 
@@ -26,13 +17,41 @@ The trained model was deployed using streamlit on Hugging Face Spaces, enabling 
 - **URL-Based Inference :** Provide image address for classification
 - **Real-time results powered by saved `.keras` model
 
-**Run Locally**
+---
+## Results
 
-Download `skin_cancer_detector.keras` model file from the huggingface space to the project directory
+### **Test Metrics**
 
-`git clone https://github.com/abhinay12890/Skin_Cancer_Detection_using_EfficientNetB0`\
-`cd repository_name`\
-`streamlit run app.py`
+* **PR-AUC:** 0.717
+* **ROC-AUC:** 0.819
+* **Accuracy:** 0.76
+
+---
+
+### Classification Report
+
+| Class             | Precision | Recall | F1-Score | Support |
+| ----------------- | --------- | ------ | -------- | ------- |
+| 0 (Non-Cancerous) | 0.81      | 0.80   | 0.81     | 678     |
+| 1 (Cancerous)     | 0.66      | 0.68   | 0.67     | 390     |
+
+---
+
+### Confusion Matrix
+
+```
+[[543, 135],
+ [124, 226]]
+```
+---
+## Key Highlights
+
+* Prevented patient-level data leakage
+* Used PR-AUC as the primary metric for imbalanced data
+* Implemented mixed precision training
+* Applied staged fine-tuning
+* Performed threshold optimization
+* Added explainability with Grad-CAM
 
 ---
 ## Project Structure
@@ -58,6 +77,7 @@ Download `skin_cancer_detector.keras` model file from the huggingface space to t
 
 ### Dataset Split
 
+Total Images: 10,015
 * **Train:** ~70%
 * **Validation:** ~15%
 * **Test:** ~15%
@@ -130,34 +150,6 @@ Instead of using the default 0.5 threshold, tuning was performed on test probabi
 
 ---
 
-## Results
-
-### **Test Metrics**
-
-* **PR-AUC:** 0.717
-* **ROC-AUC:** 0.819
-* **Accuracy:** 0.76
-
----
-
-### Classification Report
-
-| Class             | Precision | Recall | F1-Score | Support |
-| ----------------- | --------- | ------ | -------- | ------- |
-| 0 (Non-Cancerous) | 0.81      | 0.80   | 0.81     | 678     |
-| 1 (Cancerous)     | 0.66      | 0.68   | 0.67     | 390     |
-
----
-
-### Confusion Matrix
-
-```
-[[543, 135],
- [124, 226]]
-```
-
----
-
 ## Model Interpretability — Grad-CAM
 
 * Extracted the top convolutional layer from EfficientNetB0.
@@ -168,14 +160,22 @@ The model consistently focused on lesion regions rather than background artifact
 ![result](result.png)
 
 ---
-## Key Highlights
+## Tech Stack
+* Deep Learning: TensorFlow / Keras, EfficientNetB0
+* ML Tools: Scikit-learn, Pandas, NumPy
+* Visualization: Matplotlib, Seaborn
+* Deployment: Streamlit, Hugging Face Spaces
+* Optimization: Mixed Precision Training
+* Explainability: Grad-CAM
 
-* Prevented patient-level data leakage
-* Used PR-AUC as the primary metric for imbalanced data
-* Implemented mixed precision training
-* Applied staged fine-tuning
-* Performed threshold optimization
-* Added explainability with Grad-CAM
+---
+## Run Locally
+
+Download `skin_cancer_detector.keras` model file from the huggingface space to the project directory
+
+`git clone https://github.com/abhinay12890/Skin_Cancer_Detection_using_EfficientNetB0`\
+`cd repository_name`\
+`streamlit run app.py`
 
 ---
 

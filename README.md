@@ -169,10 +169,12 @@ The model consistently focused on lesion regions rather than background artifact
 
 Download `skin_cancer_detector.keras` model file from the huggingface space to the project directory
 
-`git clone https://github.com/abhinay12890/Skin_Cancer_Detection_using_EfficientNetB0`\
-`cd Skin_Cancer_Detection_using_EfficientNetB0`\
-`streamlit run app.py`
+```
+git clone https://github.com/abhinay12890/Skin_Cancer_Detection_using_EfficientNetB0
+cd Skin_Cancer_Detection_using_EfficientNetB0`
+streamlit run app.py
 
+```
 ---
 
 ## Author
